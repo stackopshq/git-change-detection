@@ -13,6 +13,13 @@ import yaml
 
 def get_changed_files(start: str, end: str, repo_dir: str = ".") -> list[str]:
     """Return list of files changed between two git refs."""
+    # Mark the repo as safe to avoid "dubious ownership" errors in containers
+    abs_repo = str(Path(repo_dir).resolve())
+    subprocess.run(
+        ["git", "config", "--global", "--add", "safe.directory", abs_repo],
+        capture_output=True,
+        check=False,
+    )
     result = subprocess.run(
         ["git", "diff", "--name-only", f"{start}...{end}"],
         capture_output=True,

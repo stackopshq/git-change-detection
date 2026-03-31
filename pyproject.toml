@@ -1,6 +1,6 @@
 [project]
 name = "git-change-detection"
-version = "0.1.0"
+version = "0.1.1"
 description = "Detect which Ansible playbooks need to run based on git changes and metadata files"
 readme = "README.md"
 requires-python = ">=3.13"
